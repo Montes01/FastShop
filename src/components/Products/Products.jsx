@@ -9,10 +9,22 @@ export const Products = () => {
   const [filter, setFilter] = useState("");
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
+    fetch("https://mercado-libre4.p.rapidapi.com/search", {
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "mercado-libre4.p.rapidapi.com",
+        "x-rapidapi-key": "d416f92865msh35102d87e41c76bp15bdc2jsnd17290b4c1b2",
+        params: {
+          search: "celular",
+          country: "AR",
+          offset: "0",
+          limit: "20",
+        },
+      },
+    })
       .then((items) => items.json())
       .then((items) => {
-        setItems(items);
+        setItems(items.results);
         console.log(items);
         setIsLoading(false);
       });
@@ -42,8 +54,8 @@ export const Products = () => {
         ) : (
           filteredItems.map((item) => (
             <ProductCard
-              description={item.description}
-              image={item.image}
+              description={item.permaLink}
+              pictures={item.pictures}
               price={item.price}
               title={item.title}
               id={item.id}

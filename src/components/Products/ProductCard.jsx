@@ -2,22 +2,22 @@ import "./Products.css";
 import { useContext } from "react";
 import { CartContext } from "../CartContext";
 
-const ProductCard = ({ title, description, price, image, id }) => {
+const ProductCard = ({ title, description, price, pictures, id }) => {
   const { addToCart } = useContext(CartContext);
 
   const handleAddToCart = () => {
-    let item = { title, description, price, image, id };
+    let item = { title, description, price, pictures, id };
     addToCart(item);
   };
 
   return (
     <div className="product-card">
-      <img src={image} alt="Product" />
+      <img src={pictures.stack.normal} alt="Product" />
 
       <div className="product-details">
         <h2 className="product-title">{title}</h2>
         <p className="product-description">{description}</p>
-        <span className="product-price">{price}</span>
+        <span className="product-price">{price.amount}</span>
       </div>
       <button onClick={handleAddToCart}>Add to Cart</button>
     </div>

@@ -18,7 +18,7 @@ export const CartItem = ({ item }) => {
     <li key={item.id} className="cart-item">
       <strong className="title">{item.title}</strong>
       <div className="cart-item-controls">
-        {(item.price * item.quantity).toFixed(2)}
+        {(item.price.amount * item.quantity).toFixed(2)}
         <button
           onClick={() => handleRemoveFromCart(item.id)}
           className="cart-remove-button"
